@@ -104,25 +104,11 @@ out:
 }
 
 func (self *Miner) Start(coinbase common.Address) {
-	atomic.StoreInt32(&self.shouldStart, 1)
-	self.worker.setEtherbase(coinbase)
-	self.coinbase = coinbase
 
-	if atomic.LoadInt32(&self.canStart) == 0 {
-		log.Info("Network syncing, will start miner afterwards")
-		return
-	}
-	atomic.StoreInt32(&self.mining, 1)
-
-	log.Info("Starting mining operation")
-	self.worker.start()
-	self.worker.commitNewWork()
 }
 
 func (self *Miner) Stop() {
-	self.worker.stop()
-	atomic.StoreInt32(&self.mining, 0)
-	atomic.StoreInt32(&self.shouldStart, 0)
+
 }
 
 func (self *Miner) Register(agent Agent) {

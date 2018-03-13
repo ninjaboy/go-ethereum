@@ -42,7 +42,7 @@ import (
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/internal/ethapi"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/miner"
+	"github.com/ninjaboy/go-ethereum/miner"
 	"github.com/ethereum/go-ethereum/node"
 	"github.com/ethereum/go-ethereum/p2p"
 	"github.com/ethereum/go-ethereum/params"
@@ -84,7 +84,7 @@ type Ethereum struct {
 
 	ApiBackend *EthApiBackend
 
-	miner     *miner.Miner
+	miner     *FakeMiner
 	gasPrice  *big.Int
 	etherbase common.Address
 
@@ -93,6 +93,12 @@ type Ethereum struct {
 
 	lock sync.RWMutex // Protects the variadic fields (e.g. gas price and etherbase)
 }
+
+type FakeMiner struct {
+	
+}
+func (f FakeMiner) HashRate
+
 
 func (s *Ethereum) AddLesServer(ls LesServer) {
 	s.lesServer = ls
