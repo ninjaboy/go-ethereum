@@ -84,7 +84,7 @@ type Ethereum struct {
 
 	ApiBackend *EthApiBackend
 
-	miner     *FakeMiner
+	miner     *miner.Miner
 	gasPrice  *big.Int
 	etherbase common.Address
 
@@ -93,12 +93,6 @@ type Ethereum struct {
 
 	lock sync.RWMutex // Protects the variadic fields (e.g. gas price and etherbase)
 }
-
-type FakeMiner struct {
-	
-}
-func (f FakeMiner) HashRate
-
 
 func (s *Ethereum) AddLesServer(ls LesServer) {
 	s.lesServer = ls
